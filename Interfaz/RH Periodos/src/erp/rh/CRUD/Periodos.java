@@ -31,7 +31,7 @@ public class Periodos extends javax.swing.JFrame {
             pst.setString(2, txtnombre.getText());
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy/MM/dd");
             String dateI = dFormat.format(dateInicio.getDate());
-            String dateF = dFormat.format(dateInicio.getDate());
+            String dateF = dFormat.format(dateFin.getDate());
             pst.setString(3, dateI);
             pst.setString(4, dateF);
             int select = cbEstatus.getSelectedIndex();
