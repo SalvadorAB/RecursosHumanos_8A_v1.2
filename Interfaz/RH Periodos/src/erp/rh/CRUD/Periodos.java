@@ -36,14 +36,15 @@ public class Periodos extends javax.swing.JFrame {
             pst.setString(4, dateF);
             int select = cbEstatus.getSelectedIndex();
             pst.setString(5, cbEstatus.getItemAt(select));
-            if(Integer.valueOf(dateF) < Integer.valueOf(dateI)){
+            if(dateI.compareTo(dateF) < 0){
+                pst.execute();
+               JOptionPane.showMessageDialog(null, "Registro Exitoso");
             }else{
-               pst.execute();
-               JOptionPane.showMessageDialog(null, "Registro Exitoso"); 
-            }   
+              JOptionPane.showMessageDialog(null, "Error la fecha Final tiene que ser mayor a la fecha Inicial y el id debe ser unico ");
+            }
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error la fecha Final tiene que ser mayor a la fecha Inicial y el id debe ser unico");
+            JOptionPane.showMessageDialog(null, "Error la fecha Final tiene que ser mayor a la fecha Inicial y el id debe ser unico ");
         }
     }
     
@@ -58,7 +59,7 @@ public class Periodos extends javax.swing.JFrame {
             pst.setString(2, txtnombre.getText());
             SimpleDateFormat dFormat = new SimpleDateFormat("yyyy/MM/dd");
             String dateI = dFormat.format(dateInicio.getDate());
-            String dateF = dFormat.format(dateInicio.getDate());
+            String dateF = dFormat.format(dateFin.getDate());
             pst.setString(3, dateI);
             pst.setString(4, dateF);
             int select = cbEstatus.getSelectedIndex();
@@ -414,8 +415,6 @@ public class Periodos extends javax.swing.JFrame {
     public void limpiarCajas(){
         txtPeriodo.setText("");
         txtnombre.setText("");
-        dateInicio.setDateFormatString("");
-        dateFin.setDateFormatString("");
         cbEstatus.setSelectedItem(null);
     }
     
