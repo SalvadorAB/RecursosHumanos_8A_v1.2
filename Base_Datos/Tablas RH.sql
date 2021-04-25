@@ -43,8 +43,8 @@ estatus char NOT NULL
 Create Table Turnos(
 idTurno int primary key NOT NULL,
 nombre varchar(20) NOT NULL,
-horaInicio date NOT NULL,
-horaFin date NOT NULL,
+horaInicio time NOT NULL,
+horaFin time NOT NULL,
 dias varchar(30) NOT NULL
 )
 
