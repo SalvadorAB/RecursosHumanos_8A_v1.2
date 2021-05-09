@@ -16,14 +16,16 @@ Create Table Deducciones(
 idDeduccion int primary key NOT NULL,
 nombre varchar(30) NOT NULL,
 descripcion varchar(80) NOT NULL,
-porcentaje float NOT NULL
+porcentaje float NOT NULL,
+estatus char NOT NULL
 ) 
 
 Create Table Percepciones(
 idPercepcion int primary key NOT NULL,
 nombre varchar(30) NOT NULL,
 descripcion varchar(80) NOT NULL,
-diasPagar int NOT NULL
+diasPagar int NOT NULL,
+estatus char NOT NULL
 )
 
 Create Table Puestos(
