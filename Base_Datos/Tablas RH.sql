@@ -2,7 +2,7 @@ Create Table FormasPago(
 idFormaPago int primary key NOT NULL,
 nombre varchar(50) NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Periodos(
 idPeriodo int primary key NOT NULL,
@@ -10,7 +10,7 @@ nombre varchar(50) NOT NULL,
 fechaInicio date NOT NULL,
 fechaFin date NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Deducciones(
 idDeduccion int primary key NOT NULL,
@@ -18,7 +18,7 @@ nombre varchar(30) NOT NULL,
 descripcion varchar(80) NOT NULL,
 porcentaje float NOT NULL,
 estatus char NOT NULL
-) 
+);
 
 Create Table Percepciones(
 idPercepcion int primary key NOT NULL,
@@ -26,7 +26,7 @@ nombre varchar(30) NOT NULL,
 descripcion varchar(80) NOT NULL,
 diasPagar int NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Puestos(
 idPuesto int primary key NOT NULL,
@@ -34,13 +34,13 @@ nombre varchar(60) NOT NULL,
 salarioMinimo float NOT NULL,
 salarioMaximo float NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Departamentos(
 idDepartamento int primary key NOT NULL,
 nombre varchar(50) NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Turnos(
 idTurno int primary key NOT NULL,
@@ -48,14 +48,14 @@ nombre varchar(20) NOT NULL,
 horaInicio time NOT NULL,
 horaFin time NOT NULL,
 dias varchar(30) NOT NULL
-)
+);
 
 Create Table Estados(
 idEstado int primary key NOT NULL,
 nombre varchar(60) NOT NULL,
 siglas varchar(10) NOT NULL,
 estatus char NOT NULL
-)
+);
 
 Create Table Ciudades(
 idCiudad int primary key NOT NULL,
@@ -63,7 +63,7 @@ nombre varchar(80) NOT NULL,
 idEstado int NOT NULL,
 estatus char NOT NULL,
 Constraint fk_Ciudades_Estado FOREIGN KEY (idEstado) REFERENCES Estados (idEstado)
-)
+);
 
 Create Table Empleados(
 idEmpleado int primary key NOT NULL,
@@ -98,7 +98,7 @@ Constraint fk_Empleados_Ciudades FOREIGN KEY (idCiudad) REFERENCES Ciudades (idC
 Constraint fk_Empleados_Departamentos FOREIGN KEY (idDepartamento) REFERENCES Departamentos (idDepartamento),
 Constraint fk_Empleados_Puestos FOREIGN KEY (idPuesto) REFERENCES Puestos (idPuesto),
 Constraint fk_Empleados_Turnos FOREIGN KEY (idTurno) REFERENCES Turnos (idTurno)
-)
+);
 
 Create Table Asistencias(
 idAsistencia int primary key NOT NULL,
@@ -107,8 +107,9 @@ horaEntrada date NOT NULL,
 horaSalida date NOT NULL,
 dia varchar(10) NOT NULL,
 idEmpleado int NOT NULL,
+estatus char NOT NULL,
 Constraint fk_Asistencias_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado)
-)
+);
 
 Create Table HistorialPuestos(
 idEmpleado int primary key NOT NULL,
@@ -119,7 +120,7 @@ fechaFin date NOT NULL,
 Constraint fk_Historial_Puestos FOREIGN KEY (idPuesto) REFERENCES Puestos (idPuesto),
 Constraint fk_Historial_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado),
 Constraint fk_Historial_Departamentos FOREIGN KEY (idDepartamento) REFERENCES Departamentos (idDepartamento)
-)
+);
 
 Create Table AusenciasJustificadas(
 idAudsencia int primary key NOT NULL,
@@ -134,7 +135,7 @@ estatus char NOT NULL,
 motivo varchar(100) NOT NULL,
 Constraint fk_AusenciasJustificadas_Empleados_2 FOREIGN KEY (idEmpleadoAutoriza) REFERENCES Empleados (idEmpleado),
 Constraint fk_AusenciasJustificadas_Empleados FOREIGN KEY (idEmpleadoSolicita) REFERENCES Empleados (idEmpleado)
-)
+);
 
 Create Table DocumentacionEmpleado(
 idDocumento int primary key NOT NULL,
@@ -143,7 +144,7 @@ fechaEntrega date NOT NULL,
 documento image NOT NULL,
 idEmpleado int NOT NULL,
 Constraint fk_DocumentacionEmpleado_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado)
-)
+);
 
 Create Table Nominas(
 idNomina int primary key NOT NULL,
@@ -160,8 +161,7 @@ idPeriodo int NOT NULL,
 Constraint fk_Nominas_FormasPago FOREIGN KEY (idFormaPago) REFERENCES FormasPago (idFormaPago),
 Constraint fk_Nominas_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado),
 Constraint fk_Nominas_Periodos FOREIGN KEY (idPeriodo) REFERENCES Periodos (idPeriodo)
-
-)
+);
 
 Create Table NominasDeducciones(
 idNomina int NOT NULL,
@@ -169,12 +169,13 @@ idDeduccion int primary key NOT NULL,
 importe float NOT NULL,
 Constraint fk_NominasDeducciones_Nominas FOREIGN KEY (idNomina) REFERENCES Nominas (idNomina),
 Constraint fk_NominasDeducciones_Deducciones FOREIGN KEY (idDeduccion) REFERENCES Deducciones (idDeduccion)
-)
+);
 
 Create Table NominasPercepciones(
 idNomina int NOT NULL,
 idPercepcion int NOT NULL,
 importe float NOT NULL,
+estatus char NOT NULL,
 Constraint pk_NominasPercepciones PRIMARY KEY (idNomina,idPercepcion),
 Constraint fk_NominasPercepciones_Nominas FOREIGN KEY (idNomina) REFERENCES Nominas (idNomina),
 Constraint fk_NominasPercepciones_Percepciones FOREIGN KEY (idPercepcion) REFERENCES	Percepciones (idPercepcion)
