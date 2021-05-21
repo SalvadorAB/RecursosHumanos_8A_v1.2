@@ -103,8 +103,8 @@ Constraint fk_Empleados_Turnos FOREIGN KEY (idTurno) REFERENCES Turnos (idTurno)
 Create Table Asistencias(
 idAsistencia int primary key NOT NULL,
 fecha date NOT NULL,
-horaEntrada date NOT NULL,
-horaSalida date NOT NULL,
+horaEntrada time NOT NULL,
+horaSalida time NOT NULL,
 dia varchar(10) NOT NULL,
 idEmpleado int NOT NULL,
 estatus char NOT NULL,
