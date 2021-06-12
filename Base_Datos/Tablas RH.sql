@@ -177,7 +177,6 @@ Create Table NominasPercepciones(
 idNomina int NOT NULL,
 idPercepcion int NOT NULL,
 importe float NOT NULL,
-estatus char NOT NULL,
 Constraint pk_NominasPercepciones PRIMARY KEY (idNomina,idPercepcion),
 Constraint fk_NominasPercepciones_Nominas FOREIGN KEY (idNomina) REFERENCES Nominas (idNomina),
 Constraint fk_NominasPercepciones_Percepciones FOREIGN KEY (idPercepcion) REFERENCES	Percepciones (idPercepcion)
