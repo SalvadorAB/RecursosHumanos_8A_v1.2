@@ -117,13 +117,14 @@ idPuesto int NOT NULL,
 idDepartamento int NOT NULL,
 fechaInicio date NOT NULL,
 fechaFin date NOT NULL,
+estatus char NOT NULL,
 Constraint fk_Historial_Puestos FOREIGN KEY (idPuesto) REFERENCES Puestos (idPuesto),
 Constraint fk_Historial_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado),
 Constraint fk_Historial_Departamentos FOREIGN KEY (idDepartamento) REFERENCES Departamentos (idDepartamento)
 );
 
 Create Table AusenciasJustificadas(
-idAudsencia int primary key NOT NULL,
+idAusencia int primary key NOT NULL auto_increment,
 fechaSolicitud date NOT NULL,
 fechaInicio date NOT NULL,
 fechaFin date NOT NULL,
@@ -138,11 +139,12 @@ Constraint fk_AusenciasJustificadas_Empleados FOREIGN KEY (idEmpleadoSolicita) R
 );
 
 Create Table DocumentacionEmpleado(
-idDocumento int primary key NOT NULL,
+idDocumento int primary key NOT NULL auto_increment,
 nombreDocumento varchar(80) NOT NULL,
 fechaEntrega date NOT NULL,
 documento blob NOT NULL,
 idEmpleado int NOT NULL,
+estatus char NOT NULL,
 Constraint fk_DocumentacionEmpleado_Empleados FOREIGN KEY (idEmpleado) REFERENCES Empleados (idEmpleado)
 );
 
